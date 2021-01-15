@@ -154,17 +154,18 @@
 	//Gamepads
 	var connected = null;
 	var buttons = null;
+	var oldButtons = null;
 	var direction = STICK_NEUTRAL;
 
 	var gamepadIdx = 0;
-	var upButtonIdx = 12;
-	var downButtonIdx = 13;
+	var upButtonIdx = 33;
+	var downButtonIdx = 32;
 	var leftButtonIdx = 14;
 	var rightButtonIdx = 15;
-	var buttonIdx = [2, 3, 5, 0, 1, 7];
+	var buttonIdx = [0, 3, 5, 1, 2, 7];
 	var smokeButtonIdx = 4;
 
-	var axeActiveThreshold = 0.4;
+	var axeActiveThreshold = 0.5;
 
 	//Right hand for the buttons
 	//(from bongocat's perspective, the buttons go
@@ -272,6 +273,7 @@
 		//Has to compare buttons and newButtons to see what changed
 		selectAP2SState(newButtons);
 
+		oldButtons = buttons;
 		buttons = newButtons;
 
 		//Logging debug data to console
@@ -283,7 +285,7 @@
 		}
 		btnStr = "AP2S: " + currentAP2S.length + " \t" + btnStr;
 		console.log(btnStr);
-
+			
 		direction = getStickDirection();
 
 		selectStickState();
